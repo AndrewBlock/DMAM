@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMAM.Device", "DMAM.Device\DMAM.Device.csproj", "{5C55819F-8853-459F-B5A1-9BD6FA1047A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMAM.Database", "DMAM.Database\DMAM.Database.csproj", "{039DF91A-2A20-4048-85C6-3E45CBF7001E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMAM.Core", "DMAM.Core\DMAM.Core.csproj", "{49FB4C8C-3F2D-4C45-AB63-7D995FA92314}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMAM.Console", "DMAM.Console\DMAM.Console.csproj", "{C2233659-DE0D-4A1F-853B-7B00CEB699E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMAM.Application", "DMAM.Application\DMAM.Application.csproj", "{D0B6295A-54D3-4725-9177-0030AC10FEA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMAM.Editors", "DMAM.Editors\DMAM.Editors.csproj", "{3CBDFC63-126D-4B6A-B3AF-34EC81364743}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMAM.Gracenote", "DMAM.Gracenote\DMAM.Gracenote.csproj", "{EAE70679-3275-4D3D-B77B-2FF87FD221F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMAM.Interop", "DMAM.Interop\DMAM.Interop.csproj", "{4FC3AC99-0DC8-4D41-92C9-97825092E746}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C55819F-8853-459F-B5A1-9BD6FA1047A0}.Debug|x64.ActiveCfg = Debug|x64
+		{5C55819F-8853-459F-B5A1-9BD6FA1047A0}.Debug|x64.Build.0 = Debug|x64
+		{5C55819F-8853-459F-B5A1-9BD6FA1047A0}.Release|x64.ActiveCfg = Release|x64
+		{5C55819F-8853-459F-B5A1-9BD6FA1047A0}.Release|x64.Build.0 = Release|x64
+		{039DF91A-2A20-4048-85C6-3E45CBF7001E}.Debug|x64.ActiveCfg = Debug|x64
+		{039DF91A-2A20-4048-85C6-3E45CBF7001E}.Debug|x64.Build.0 = Debug|x64
+		{039DF91A-2A20-4048-85C6-3E45CBF7001E}.Release|x64.ActiveCfg = Release|x64
+		{039DF91A-2A20-4048-85C6-3E45CBF7001E}.Release|x64.Build.0 = Release|x64
+		{49FB4C8C-3F2D-4C45-AB63-7D995FA92314}.Debug|x64.ActiveCfg = Debug|x64
+		{49FB4C8C-3F2D-4C45-AB63-7D995FA92314}.Debug|x64.Build.0 = Debug|x64
+		{49FB4C8C-3F2D-4C45-AB63-7D995FA92314}.Release|x64.ActiveCfg = Release|x64
+		{49FB4C8C-3F2D-4C45-AB63-7D995FA92314}.Release|x64.Build.0 = Release|x64
+		{C2233659-DE0D-4A1F-853B-7B00CEB699E1}.Debug|x64.ActiveCfg = Debug|x64
+		{C2233659-DE0D-4A1F-853B-7B00CEB699E1}.Debug|x64.Build.0 = Debug|x64
+		{C2233659-DE0D-4A1F-853B-7B00CEB699E1}.Release|x64.ActiveCfg = Release|x64
+		{C2233659-DE0D-4A1F-853B-7B00CEB699E1}.Release|x64.Build.0 = Release|x64
+		{D0B6295A-54D3-4725-9177-0030AC10FEA4}.Debug|x64.ActiveCfg = Debug|x64
+		{D0B6295A-54D3-4725-9177-0030AC10FEA4}.Debug|x64.Build.0 = Debug|x64
+		{D0B6295A-54D3-4725-9177-0030AC10FEA4}.Release|x64.ActiveCfg = Release|x64
+		{D0B6295A-54D3-4725-9177-0030AC10FEA4}.Release|x64.Build.0 = Release|x64
+		{3CBDFC63-126D-4B6A-B3AF-34EC81364743}.Debug|x64.ActiveCfg = Debug|x64
+		{3CBDFC63-126D-4B6A-B3AF-34EC81364743}.Debug|x64.Build.0 = Debug|x64
+		{3CBDFC63-126D-4B6A-B3AF-34EC81364743}.Release|x64.ActiveCfg = Release|x64
+		{3CBDFC63-126D-4B6A-B3AF-34EC81364743}.Release|x64.Build.0 = Release|x64
+		{EAE70679-3275-4D3D-B77B-2FF87FD221F5}.Debug|x64.ActiveCfg = Debug|x64
+		{EAE70679-3275-4D3D-B77B-2FF87FD221F5}.Debug|x64.Build.0 = Debug|x64
+		{EAE70679-3275-4D3D-B77B-2FF87FD221F5}.Release|x64.ActiveCfg = Release|x64
+		{EAE70679-3275-4D3D-B77B-2FF87FD221F5}.Release|x64.Build.0 = Release|x64
+		{4FC3AC99-0DC8-4D41-92C9-97825092E746}.Debug|x64.ActiveCfg = Debug|x64
+		{4FC3AC99-0DC8-4D41-92C9-97825092E746}.Debug|x64.Build.0 = Debug|x64
+		{4FC3AC99-0DC8-4D41-92C9-97825092E746}.Release|x64.ActiveCfg = Release|x64
+		{4FC3AC99-0DC8-4D41-92C9-97825092E746}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,12 @@
+﻿namespace DMAM.Interop.IO
+{
+    public enum CDROM_READ_TOC_EX_FORMAT : byte
+    {
+        CDROM_READ_TOC_EX_FORMAT_TOC = 0x00,
+        CDROM_READ_TOC_EX_FORMAT_SESSION = 0x01,
+        CDROM_READ_TOC_EX_FORMAT_FULL_TOC = 0x02,
+        CDROM_READ_TOC_EX_FORMAT_PMA = 0x03,
+        CDROM_READ_TOC_EX_FORMAT_ATIP = 0x04,
+        CDROM_READ_TOC_EX_FORMAT_CDTEXT = 0x05
+    }
+}
