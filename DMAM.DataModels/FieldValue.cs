@@ -13,6 +13,7 @@ namespace DMAM.DataModels
         private string _value = string.Empty;
         private string _originalValue = string.Empty;
         private bool _isModified;
+        private bool _isReadOnly;
 
         public FieldValue(string fieldName, string displayName, bool canRemove)
         {
@@ -100,9 +101,27 @@ namespace DMAM.DataModels
             }
         }
 
+        public bool IsReadOnly
+        {
+            get
+            {
+                return _isReadOnly;
+            }
+            private set
+            {
+                if (value == _isReadOnly)
+                {
+                    return;
+                }
+
+                _isReadOnly = value;
+                NotifyPropertyChanged("IsReadOnly");
+            }
+        }
+
         public void Revert()
         {
-            if (!IsModified)
+            if (!IsModified && !IsReadOnly)
             {
                 return;
             }

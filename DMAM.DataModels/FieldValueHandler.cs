@@ -1,4 +1,4 @@
 ﻿namespace DMAM.DataModels
 {
-    public delegate void FieldValueHandler(object sender);
+    public delegate void FieldValueHandler(FieldValue fieldValue);
 }
