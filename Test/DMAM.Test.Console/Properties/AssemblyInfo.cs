@@ -2,8 +2,8 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("DMAM.Console")]
-[assembly: AssemblyDescription("DMAM.Console.exe Assembly")]
+[assembly: AssemblyTitle("DMAM.Test.Console")]
+[assembly: AssemblyDescription("DMAM.Test.Console.exe Assembly")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Digital Music Archive Manager (DMAM)")]

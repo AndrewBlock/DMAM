@@ -7,17 +7,17 @@
     <ProjectGuid>{C2233659-DE0D-4A1F-853B-7B00CEB699E1}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DMAM.Console</RootNamespace>
-    <AssemblyName>DMAM.Console</AssemblyName>
+    <RootNamespace>DMAM.Test.Console</RootNamespace>
+    <AssemblyName>DMAM.Test.Console</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>DMAM.Console.Program</StartupObject>
+    <StartupObject>DMAM.Test.Console.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\Debug\</OutputPath>
+    <OutputPath>..\..\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -27,7 +27,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <OutputPath>..\Release\</OutputPath>
+    <OutputPath>..\..\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -54,11 +54,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DMAM.Core\DMAM.Core.csproj">
+    <ProjectReference Include="..\..\DMAM.Core\DMAM.Core.csproj">
       <Project>{49fb4c8c-3f2d-4c45-ab63-7d995fa92314}</Project>
       <Name>DMAM.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DMAM.Gracenote\DMAM.Gracenote.csproj">
+    <ProjectReference Include="..\..\DMAM.Gracenote\DMAM.Gracenote.csproj">
       <Project>{eae70679-3275-4d3d-b77b-2ff87fd221f5}</Project>
       <Name>DMAM.Gracenote</Name>
     </ProjectReference>

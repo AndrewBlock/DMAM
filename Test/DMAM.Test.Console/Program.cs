@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DMAM.Console
+namespace DMAM.Test.Console
 {
     public class Program
     {
