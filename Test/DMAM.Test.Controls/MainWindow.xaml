@@ -1,7 +1,18 @@
 ﻿<Window x:Class="DMAM.Test.Controls.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        xmlns:dmamc="clr-namespace:DMAM.Controls;assembly=DMAM.Controls"
+        Title="MainWindow" Height="350" Width="525" FontFamily="Tahoma">
     <Grid>
+        <dmamc:FieldValueEditor VerticalAlignment="Top" HorizontalAlignment="Left" Height="18" Width="250" Margin="20,20,0,0"
+            DataContext="{Binding TestFieldValue1}" />
+        <dmamc:FieldValueEditor VerticalAlignment="Top" HorizontalAlignment="Left" Height="18" Width="250" Margin="20,40,0,0"
+            DataContext="{Binding TestFieldValue2}" />
+        <dmamc:FieldValueEditor VerticalAlignment="Top" HorizontalAlignment="Left" Height="18" Width="250" Margin="20,60,0,0"
+            DataContext="{Binding TestFieldValue3}" />
+        <dmamc:FieldValueEditor VerticalAlignment="Top" HorizontalAlignment="Left" Height="18" Width="250" Margin="20,80,0,0"
+            DataContext="{Binding TestFieldValue4}" />
+        <dmamc:FieldValueEditor VerticalAlignment="Top" HorizontalAlignment="Left" Height="18" Width="250" Margin="20,100,0,0"
+            DataContext="{Binding TestFieldValue5}" />
     </Grid>
 </Window>

@@ -53,6 +53,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -92,6 +93,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DMAM.Controls\DMAM.Controls.csproj">
+      <Project>{58ac0ed6-c418-4b87-abc9-c422ebfdae57}</Project>
+      <Name>DMAM.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DMAM.Core\DMAM.Core.csproj">
+      <Project>{49fb4c8c-3f2d-4c45-ab63-7d995fa92314}</Project>
+      <Name>DMAM.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DMAM.DataModels\DMAM.DataModels.csproj">
+      <Project>{21dae880-c6ab-4e15-873f-6c15ebfec35d}</Project>
+      <Name>DMAM.DataModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

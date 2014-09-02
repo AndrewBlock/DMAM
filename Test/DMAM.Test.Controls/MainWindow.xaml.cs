@@ -7,6 +7,7 @@ namespace DMAM.Test.Controls
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new ViewModel();
         }
     }
 }
