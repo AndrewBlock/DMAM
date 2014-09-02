@@ -12,6 +12,7 @@ namespace DMAM.DataModels
 
         private string _value = string.Empty;
         private string _originalValue = string.Empty;
+        private bool _canRevert;
         private bool _isModified;
         private bool _isReadOnly;
 
@@ -21,7 +22,7 @@ namespace DMAM.DataModels
             DisplayName = displayName;
             CanRemove = canRemove;
 
-            _revertCommand = new Command(this, "IsModified", "Revert");
+            _revertCommand = new Command(this, "CanRevert", "Revert");
             _removeCommand = new Command(this, "CanRemove", "Remove");
         }
 
@@ -78,6 +79,24 @@ namespace DMAM.DataModels
             }
         }
 
+        public bool CanRevert
+        {
+            get
+            {
+                return _canRevert;
+            }
+            private set
+            {
+                if (value == _canRevert)
+                {
+                    return;
+                }
+
+                _canRevert = value;
+                NotifyPropertyChanged("CanRevert");
+            }
+        }
+
         public bool IsModified
         {
             get
@@ -121,10 +140,12 @@ namespace DMAM.DataModels
 
         public void Revert()
         {
-            if (!IsModified && !IsReadOnly)
+            if (!CanRevert)
             {
                 return;
             }
+
+            Value = _originalValue;
         }
 
         public void Remove()
@@ -155,6 +176,7 @@ namespace DMAM.DataModels
         private void UpdateDisplayStates()
         {
             IsModified = (_value != _originalValue);
+            CanRevert = IsModified && !IsReadOnly;
         }
     }
 }
