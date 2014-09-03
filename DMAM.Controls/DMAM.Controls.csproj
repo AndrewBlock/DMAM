@@ -45,6 +45,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FieldSetEditor.cs" />
     <Compile Include="FieldValueEditor.xaml.cs">
       <DependentUpon>FieldValueEditor.xaml</DependentUpon>
     </Compile>

@@ -22,7 +22,7 @@
                  Background="Transparent" FontStyle="Italic" Opacity="0.5" IsHitTestVisible="False" />
 
         <Button x:Name="revertButton" Margin="2,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1"
-                BorderThickness="0" IsTabStop="False"
+                BorderThickness="0" IsTabStop="False" Focusable="False"
                 Command="{Binding RevertCommand}">
             <Button.Content>
                 <Image x:Name="revertImage" Source="Icons/Revert.png" Width="12" Height="12" />
@@ -30,7 +30,7 @@
         </Button>
 
         <Button x:Name="removeButton" Margin="2,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="2"
-                BorderThickness="0" IsTabStop="False"
+                BorderThickness="0" IsTabStop="False" Focusable="False"
                 Command="{Binding RemoveCommand}">
             <Button.Content>
                 <Image x:Name="removeImage" Source="Icons/Delete.png" Width="12" Height="12" />
