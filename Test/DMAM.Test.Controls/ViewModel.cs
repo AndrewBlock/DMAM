@@ -8,6 +8,8 @@ namespace DMAM.Test.Controls
 {
     public class ViewModel : ViewModelBase
     {
+        private readonly FieldSet _fieldSet;
+
         private readonly FieldValue _testFieldValue1 = new FieldValue("ArtistName", "Artist Name", true);
         private readonly FieldValue _testFieldValue2 = new FieldValue("AlbumTitle", "Album Title", true);
         private readonly FieldValue _testFieldValue3 = new FieldValue("Year", "Year", true);
@@ -16,11 +18,29 @@ namespace DMAM.Test.Controls
 
         public ViewModel()
         {
+            _fieldSet = new FieldSet(new MetadataFieldCompare());
+
             _testFieldValue1.SetOriginalValue("Dave Matthews Band");
             _testFieldValue2.SetOriginalValue("Before These Crowded Streets");
             _testFieldValue3.SetOriginalValue("1998");
             _testFieldValue4.SetOriginalValue("RCA Records");
             _testFieldValue5.SetOriginalValue("Copyright © 1998");
+
+            _fieldSet.Initialize(new[] {
+                _testFieldValue1,
+                _testFieldValue2,
+                _testFieldValue3,
+                _testFieldValue4,
+                _testFieldValue5
+            });
+        }
+
+        public FieldSet FieldSet
+        {
+            get
+            {
+                return _fieldSet;
+            }
         }
 
         public FieldValue TestFieldValue1
@@ -61,6 +81,14 @@ namespace DMAM.Test.Controls
             {
                 return _testFieldValue5;
             }
+        }
+    }
+
+    public class MetadataFieldCompare : IFieldValueCompare
+    {
+        public int Compare(FieldValue x, FieldValue y)
+        {
+            return string.Compare(x.FieldName, y.FieldName);
         }
     }
 }
