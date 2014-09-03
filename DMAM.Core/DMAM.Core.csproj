@@ -38,6 +38,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\SortedList.cs" />
     <Compile Include="Metadata\ItemMetadata.cs" />
     <Compile Include="Events\EventData.cs" />
     <Compile Include="Events\EventHandler.cs" />
