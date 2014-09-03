@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="FieldSet.cs" />
     <Compile Include="FieldValueHandler.cs" />
+    <Compile Include="IFieldValueCompare.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FieldValue.cs" />
   </ItemGroup>

@@ -2,27 +2,25 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
+using DMAM.Core.Collections;
 using DMAM.Core.MVVM;
 
 namespace DMAM.DataModels
 {
     public class FieldSet : ViewModelBase, IDisposable
     {
-        public ObservableCollection<FieldValue> _fieldValues = new ObservableCollection<FieldValue>();
+        private readonly IFieldValueCompare _comparer;
 
-        public FieldSet()
+        private ObservableCollection<FieldValue> _fieldValues = new ObservableCollection<FieldValue>();
+
+        public FieldSet(IFieldValueCompare comparer)
         {
+            _comparer = comparer;
         }
 
         public void Dispose()
         {
-            foreach (var fieldValue in _fieldValues)
-            {
-                DetachFieldValue(fieldValue);
-                fieldValue.Dispose();
-            }
-
-            _fieldValues.Clear();
+            Clear();
         }
 
         public IEnumerable<FieldValue> FieldValues
@@ -30,6 +28,46 @@ namespace DMAM.DataModels
             get
             {
                 return _fieldValues;
+            }
+        }
+
+        public void Initialize(IEnumerable<FieldValue> fieldValues)
+        {
+            _fieldValues.InitializeSorted(fieldValues, _comparer);
+            AttachFieldValues(fieldValues);
+        }
+
+        public void Clear()
+        {
+            DetachFieldValues();
+            _fieldValues.Clear();
+        }
+
+        public void Add(FieldValue fieldValue)
+        {
+            _fieldValues.InsertSorted(fieldValue, _comparer);
+            AttachFieldValue(fieldValue);
+        }
+
+        public void Remove(FieldValue fieldValue)
+        {
+            DetachFieldValue(fieldValue);
+            _fieldValues.Remove(fieldValue);
+        }
+
+        private void AttachFieldValues(IEnumerable<FieldValue> fieldValues)
+        {
+            foreach (var fieldValue in fieldValues)
+            {
+                AttachFieldValue(fieldValue);
+            }
+        }
+
+        private void DetachFieldValues()
+        {
+            foreach (var fieldValue in _fieldValues)
+            {
+                DetachFieldValue(fieldValue);
             }
         }
 
