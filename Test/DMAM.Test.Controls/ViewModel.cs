@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using DMAM.Core.DataModels;
 using DMAM.Core.MVVM;
-using DMAM.DataModels;
 
 namespace DMAM.Test.Controls
 {

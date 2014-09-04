@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 using DMAM.Core.MVVM;
 
-namespace DMAM.DataModels
+namespace DMAM.Core.DataModels
 {
     public class FieldValue : ViewModelBase, IDisposable
     {

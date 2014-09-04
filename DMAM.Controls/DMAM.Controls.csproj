@@ -77,10 +77,6 @@
       <Project>{49fb4c8c-3f2d-4c45-ab63-7d995fa92314}</Project>
       <Name>DMAM.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DMAM.DataModels\DMAM.DataModels.csproj">
-      <Project>{21dae880-c6ab-4e15-873f-6c15ebfec35d}</Project>
-      <Name>DMAM.DataModels</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="FieldValueEditor.xaml">

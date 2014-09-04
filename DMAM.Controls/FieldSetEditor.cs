@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
 
-using DMAM.DataModels;
+using DMAM.Core.DataModels;
 
 namespace DMAM.Controls
 {

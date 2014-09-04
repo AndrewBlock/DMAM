@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-using DMAM.DataModels;
+using DMAM.Core.DataModels;
 
 namespace DMAM.Controls
 {

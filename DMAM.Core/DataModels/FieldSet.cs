@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using DMAM.Core.Collections;
 using DMAM.Core.MVVM;
 
-namespace DMAM.DataModels
+namespace DMAM.Core.DataModels
 {
     public class FieldSet : ViewModelBase, IDisposable
     {
