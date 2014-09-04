@@ -16,10 +16,11 @@ namespace DMAM.Core.DataModels
         private bool _isModified;
         private bool _isReadOnly;
 
-        public FieldValue(string fieldName, string displayName, bool canRemove)
+        public FieldValue(string fieldName, string displayName, FieldValueRank rank, bool canRemove)
         {
             FieldName = fieldName;
             DisplayName = displayName;
+            Rank = rank;
             CanRemove = canRemove;
 
             _revertCommand = new Command(this, "CanRevert", "Revert");
@@ -53,6 +54,7 @@ namespace DMAM.Core.DataModels
 
         public string FieldName { get; private set; }
         public string DisplayName { get; private set; }
+        public FieldValueRank Rank { get; private set; }
         public bool CanRemove { get; private set; }
 
         public string Value

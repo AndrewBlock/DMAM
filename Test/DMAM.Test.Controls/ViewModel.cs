@@ -10,11 +10,11 @@ namespace DMAM.Test.Controls
     {
         private readonly FieldSet _fieldSet;
 
-        private readonly FieldValue _testFieldValue1 = new FieldValue("ArtistName", "Artist Name", true);
-        private readonly FieldValue _testFieldValue2 = new FieldValue("AlbumTitle", "Album Title", true);
-        private readonly FieldValue _testFieldValue3 = new FieldValue("Year", "Year", true);
-        private readonly FieldValue _testFieldValue4 = new FieldValue("Label", "Label", true);
-        private readonly FieldValue _testFieldValue5 = new FieldValue("Copyright", "Copyright", true);
+        private readonly FieldValue _testFieldValue1 = new FieldValue("ArtistName", "Artist Name", FieldValueRank.Primary, true);
+        private readonly FieldValue _testFieldValue2 = new FieldValue("AlbumTitle", "Album Title", FieldValueRank.Secondary, true);
+        private readonly FieldValue _testFieldValue3 = new FieldValue("Year", "Year", FieldValueRank.General, true);
+        private readonly FieldValue _testFieldValue4 = new FieldValue("Label", "Label", FieldValueRank.General, true);
+        private readonly FieldValue _testFieldValue5 = new FieldValue("Copyright", "Copyright", FieldValueRank.General, true);
 
         public ViewModel()
         {

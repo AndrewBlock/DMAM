@@ -21,6 +21,13 @@ namespace DMAM.Controls
         private const double EnabledOpacity = 1.0;
         private const double DisabledOpacity = 0.4;
 
+        private static readonly FontWeight PrimaryFontWeight = FontWeights.DemiBold;
+        private const double PrimaryOpacity = 1.0;
+        private static readonly FontWeight SecondaryFontWeight = FontWeights.Normal;
+        private const double SecondaryOpacity = 1.0;
+        private static readonly FontWeight GeneralFontWeight = FontWeights.Normal;
+        private const double GeneralOpacity = 0.70;
+
         private FieldValue _fieldValue;
 
         private bool _mouseEntered;
@@ -163,12 +170,51 @@ namespace DMAM.Controls
 
         private void UpdateAllDisplayAttributes()
         {
+            UpdateTextOpacity();
             UpdateValue();
             UpdateToolTip();
             UpdateIsReadOnly();
             UpdateIsModified();
             UpdateRevertCommand();
             UpdateRemoveCommand();
+        }
+
+        private void UpdateTextOpacity()
+        {
+            if (_fieldValue == null)
+            {
+                return;
+            }
+
+            FontWeight fontWeight;
+            double opacity;
+
+            switch (_fieldValue.Rank)
+            {
+                case FieldValueRank.Primary:
+                {
+                    fontWeight = PrimaryFontWeight;
+                    opacity = PrimaryOpacity;
+                    break;
+                }
+                case FieldValueRank.Secondary:
+                {
+                    fontWeight = SecondaryFontWeight;
+                    opacity = SecondaryOpacity;
+                    break;
+                }
+                default:
+                {
+                    fontWeight = GeneralFontWeight;
+                    opacity = GeneralOpacity;
+                    break;
+                }
+            }
+
+            editText.FontWeight = fontWeight;
+            editText.Opacity = opacity;
+            readonlyText.FontWeight = fontWeight;
+            readonlyText.Opacity = opacity;
         }
 
         private void UpdateValue()
@@ -254,6 +300,5 @@ namespace DMAM.Controls
             revertButton.Opacity = opacity;
             removeButton.Opacity = opacity;
         }
-
     }
 }

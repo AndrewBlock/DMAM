@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Collections\SortedList.cs" />
     <Compile Include="DataModels\FieldSet.cs" />
+    <Compile Include="DataModels\FieldValueRank.cs" />
     <Compile Include="DataModels\FieldValue.cs" />
     <Compile Include="DataModels\FieldValueHandler.cs" />
     <Compile Include="DataModels\IFieldValueCompare.cs" />
