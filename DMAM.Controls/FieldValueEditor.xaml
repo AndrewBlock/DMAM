@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:m="clr-namespace:System.Windows.Media;assembly=PresentationFramework"
              mc:Ignorable="d"
+             m:TextOptions.TextFormattingMode="Display" m:TextOptions.TextRenderingMode="ClearType"
              d:DesignHeight="20" d:DesignWidth="300">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -13,7 +15,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBox x:Name="editText" Padding="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="0"
-                 BorderThickness="0" Background="Transparent"/>
+                 BorderThickness="0" Background="Transparent" />
 
         <TextBlock x:Name="readonlyText" Padding="1,0,1,0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="0"
                  Background="Transparent" IsHitTestVisible="False" />
@@ -25,7 +27,7 @@
                 BorderThickness="0" IsTabStop="False" Focusable="False"
                 Command="{Binding RevertCommand}">
             <Button.Content>
-                <Image x:Name="revertImage" Source="Icons/Revert.png" Width="12" Height="12" />
+                <Image x:Name="revertImage" Source="Icons/Revert.png" Width="10" Height="10" />
             </Button.Content>
         </Button>
 
@@ -33,7 +35,7 @@
                 BorderThickness="0" IsTabStop="False" Focusable="False"
                 Command="{Binding RemoveCommand}">
             <Button.Content>
-                <Image x:Name="removeImage" Source="Icons/Delete.png" Width="12" Height="12" />
+                <Image x:Name="removeImage" Source="Icons/Delete.png" Width="10" Height="10" />
             </Button.Content>
         </Button>
     </Grid>
