@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{58AC0ED6-C418-4B87-ABC9-C422EBFDAE57}</ProjectGuid>
+    <ProjectGuid>{06DB9C15-D4C7-4E1C-9F28-40BAABA9CBFE}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DMAM.Controls</RootNamespace>
-    <AssemblyName>DMAM.Controls</AssemblyName>
+    <RootNamespace>DMAM.Album.Editors</RootNamespace>
+    <AssemblyName>DMAM.Album.Editors</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -43,10 +43,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FieldSetEditor.cs" />
-    <Compile Include="FieldValueEditor.xaml.cs">
-      <DependentUpon>FieldValueEditor.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -71,20 +67,14 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DMAM.Album.Data\DMAM.Album.Data.csproj">
+      <Project>{5d86fd8e-afdd-476b-923a-8cc039eb9fcc}</Project>
+      <Name>DMAM.Album.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DMAM.Core\DMAM.Core.csproj">
       <Project>{49fb4c8c-3f2d-4c45-ab63-7d995fa92314}</Project>
       <Name>DMAM.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="FieldValueEditor.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icons\Delete.png" />
-    <Resource Include="Icons\Revert.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

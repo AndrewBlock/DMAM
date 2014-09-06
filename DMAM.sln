@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMAM.Test.Console", "Test\D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMAM.Test.Controls", "Test\DMAM.Test.Controls\DMAM.Test.Controls.csproj", "{0304BF05-1235-4644-9879-94660DE06517}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMAM.Album.Editors", "DMAM.Album.Editors\DMAM.Album.Editors.csproj", "{06DB9C15-D4C7-4E1C-9F28-40BAABA9CBFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMAM.Album.Data", "DMAM.Album.Data\DMAM.Album.Data.csproj", "{5D86FD8E-AFDD-476B-923A-8CC039EB9FCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{0304BF05-1235-4644-9879-94660DE06517}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0304BF05-1235-4644-9879-94660DE06517}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0304BF05-1235-4644-9879-94660DE06517}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06DB9C15-D4C7-4E1C-9F28-40BAABA9CBFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06DB9C15-D4C7-4E1C-9F28-40BAABA9CBFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06DB9C15-D4C7-4E1C-9F28-40BAABA9CBFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06DB9C15-D4C7-4E1C-9F28-40BAABA9CBFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D86FD8E-AFDD-476B-923A-8CC039EB9FCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D86FD8E-AFDD-476B-923A-8CC039EB9FCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D86FD8E-AFDD-476B-923A-8CC039EB9FCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D86FD8E-AFDD-476B-923A-8CC039EB9FCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
