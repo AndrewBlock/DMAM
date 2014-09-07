@@ -35,6 +35,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\AlbumData.cs" />
+    <Compile Include="Models\CoverArtData.cs" />
+    <Compile Include="Models\TrackData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +57,9 @@
       <Project>{eae70679-3275-4d3d-b77b-2ff87fd221f5}</Project>
       <Name>DMAM.Gracenote</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Schema\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
