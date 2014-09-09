@@ -95,6 +95,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DMAM.Album.Data\DMAM.Album.Data.csproj">
+      <Project>{5d86fd8e-afdd-476b-923a-8cc039eb9fcc}</Project>
+      <Name>DMAM.Album.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DMAM.Album.Editors\DMAM.Album.Editors.csproj">
+      <Project>{06db9c15-d4c7-4e1c-9f28-40baaba9cbfe}</Project>
+      <Name>DMAM.Album.Editors</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DMAM.Controls\DMAM.Controls.csproj">
       <Project>{58ac0ed6-c418-4b87-abc9-c422ebfdae57}</Project>
       <Name>DMAM.Controls</Name>

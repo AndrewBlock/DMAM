@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using DMAM.Album.Data.Models;
 using DMAM.Core.DataModels;
 using DMAM.Core.MVVM;
 
@@ -8,6 +9,9 @@ namespace DMAM.Test.Controls
 {
     public class ViewModel : ViewModelBase
     {
+        private readonly IEnumerable<TrackData> _tracks;
+        private readonly TrackData _track;
+
         private readonly FieldSet _fieldSet;
 
         private readonly FieldValue _testFieldValue1 = new FieldValue("ArtistName", "Artist Name", FieldValueRank.Primary, true);
@@ -33,6 +37,25 @@ namespace DMAM.Test.Controls
                 _testFieldValue4,
                 _testFieldValue5
             });
+
+            _track = new TrackData("12", _fieldSet, "3:35.00");
+            _tracks = new[] { _track };
+        }
+
+        public IEnumerable<TrackData> Tracks
+        {
+            get
+            {
+                return _tracks;
+            }
+        }
+
+        public TrackData Track
+        {
+            get
+            {
+                return _track;
+            }
         }
 
         public FieldSet FieldSet
