@@ -7,7 +7,7 @@ namespace DMAM.Album.Data.Models
 {
     public class TrackData : ViewModelBase, IDisposable
     {
-        public TrackData(int trackNumber, FieldSet metadataFields, string trackLength)
+        public TrackData(string trackNumber, FieldSet metadataFields, string trackLength)
         {
             TrackNumber = trackNumber;
             MetadataFields = metadataFields;
@@ -19,7 +19,7 @@ namespace DMAM.Album.Data.Models
             MetadataFields.Dispose();
         }
 
-        public int TrackNumber { get; private set; }
+        public string TrackNumber { get; private set; }
         public FieldSet MetadataFields { get; private set; }
         public string TrackLength { get; private set; }
     }
