@@ -22,14 +22,27 @@ namespace DMAM.Album.Editors
         public static readonly DependencyProperty VerticalGapMarginProperty = DependencyProperty.Register("VerticalGapMargin",
             typeof(double), typeof(TrackEditor), new PropertyMetadata(5d, NotifyPropertyChanged));
 
+        public static readonly DependencyProperty FieldSetVerticalGapMarginProperty = DependencyProperty.Register("FieldSetVerticalGapMargin",
+            typeof(double), typeof(TrackEditor), new PropertyMetadata(0d, NotifyPropertyChanged));
+
         public static readonly DependencyProperty LabelFontSizeFactorProperty = DependencyProperty.Register("LabelFontSizeFactor",
             typeof(double), typeof(TrackEditor), new PropertyMetadata(1.5d, NotifyPropertyChanged));
 
-        public static readonly DependencyProperty LabelPaddingProperty = DependencyProperty.Register("LabelPadding",
-            typeof(Thickness), typeof(TrackEditor), new PropertyMetadata(new Thickness(5, 5, 5, 5), NotifyPropertyChanged));
+        public static readonly DependencyProperty SectionPaddingProperty = DependencyProperty.Register("SectionPadding",
+            typeof(Thickness), typeof(TrackEditor), new PropertyMetadata(new Thickness(5d, 5d, 5d, 5d), NotifyPropertyChanged));
 
-        private static readonly DependencyProperty InternalFontSizeProperty = DependencyProperty.Register("InternalFontSize",
-            typeof(double), typeof(TrackEditor), new PropertyMetadata(1d, NotifyPropertyChanged));
+        public static readonly DependencyProperty SectionBackgroundProperty = DependencyProperty.Register("SectionBackground",
+            typeof(Brush), typeof(TrackEditor), new PropertyMetadata(new SolidColorBrush(Colors.Transparent), NotifyPropertyChanged));
+
+        public static readonly DependencyProperty FieldNormalBackgroundProperty = DependencyProperty.Register("FieldNormalBackground",
+            typeof(Brush), typeof(TrackEditor), new PropertyMetadata(new SolidColorBrush(Colors.Transparent), NotifyPropertyChanged));
+
+        public static readonly DependencyProperty FieldModifiedBackgroundProperty = DependencyProperty.Register("FieldModifiedBackground",
+            typeof(Brush), typeof(TrackEditor), new PropertyMetadata(new SolidColorBrush(Colors.LightYellow), NotifyPropertyChanged));
+
+        private const string TrackNumberPropertyName = "TrackNumber";
+        private const string MetadataFieldsPropertyName = "MetadataFields";
+        private const string TrackLengthPropertyName = "TrackLength";
 
         private Dictionary<TrackData, TextBlock> _numberEditors = new Dictionary<TrackData, TextBlock>();
         private Dictionary<TrackData, FieldSetEditor> _fieldSetEditors = new Dictionary<TrackData, FieldSetEditor>();
@@ -44,12 +57,6 @@ namespace DMAM.Album.Editors
         {
             TextOptions.SetTextFormattingMode(this, TextFormattingMode.Display);
             TextOptions.SetTextRenderingMode(this, TextRenderingMode.ClearType);
-
-            SetBinding(InternalFontSizeProperty, new Binding
-            {
-                Source = this,
-                Path = new PropertyPath("FontSize")
-            });
 
             Content = _layoutRoot;
             AttachFieldSet(ItemsSource);
@@ -91,6 +98,18 @@ namespace DMAM.Album.Editors
             }
         }
 
+        public double FieldSetVerticalGapMargin
+        {
+            get
+            {
+                return (double) GetValue(FieldSetVerticalGapMarginProperty);
+            }
+            set
+            {
+                SetValue(FieldSetVerticalGapMarginProperty, value);
+            }
+        }
+
         public double LabelFontSizeFactor
         {
             get
@@ -103,15 +122,51 @@ namespace DMAM.Album.Editors
             }
         }
 
-        public Thickness LabelPadding
+        public Thickness SectionPadding
         {
             get
             {
-                return (Thickness) GetValue(LabelPaddingProperty);
+                return (Thickness) GetValue(SectionPaddingProperty);
             }
             set
             {
-                SetValue(LabelPaddingProperty, value);
+                SetValue(SectionPaddingProperty, value);
+            }
+        }
+
+        public Brush SectionBackground
+        {
+            get
+            {
+                return (Brush) GetValue(SectionBackgroundProperty);
+            }
+            set
+            {
+                SetValue(SectionBackgroundProperty, value);
+            }
+        }
+
+        public Brush FieldNormalBackground
+        {
+            get
+            {
+                return (Brush) GetValue(FieldNormalBackgroundProperty);
+            }
+            set
+            {
+                SetValue(FieldNormalBackgroundProperty, value);
+            }
+        }
+
+        public Brush FieldModifiedBackground
+        {
+            get
+            {
+                return (Brush) GetValue(FieldModifiedBackgroundProperty);
+            }
+            set
+            {
+                SetValue(FieldModifiedBackgroundProperty, value);
             }
         }
 
@@ -134,9 +189,12 @@ namespace DMAM.Album.Editors
                 ClearControlLayout();
                 UpdateControlLayout();
             }
-            else if ((args.Property == InternalFontSizeProperty)
+            else if ((args.Property == FieldSetVerticalGapMarginProperty)
                 || (args.Property == LabelFontSizeFactorProperty)
-                || (args.Property == LabelPaddingProperty))
+                || (args.Property == SectionPaddingProperty)
+                || (args.Property == SectionBackgroundProperty)
+                || (args.Property == FieldNormalBackgroundProperty)
+                || (args.Property == FieldModifiedBackgroundProperty))
             {
                 ClearControlLayout();
                 ReleaseEditors();
@@ -213,68 +271,62 @@ namespace DMAM.Album.Editors
             var rowIndex = 0;
             foreach (var trackData in _itemsSource)
             {
-                SetRowLayout(trackData, ref rowIndex);
+                SetControlRowLayout(trackData, ref rowIndex);
             }
         }
+
+        private const int NumberEditorColumnIndex = 0;
+        private const int FieldSetEditorColumnIndex = 2;
+        private const int LengthEditorColumnIndex = 4;
 
         private void SetColumnDefinitions()
         {
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition
-            {
-                Width = new GridLength(0d, GridUnitType.Auto)
-            });
+            AddColumn(0d, GridUnitType.Auto);
+            AddColumn(HorizontalGapMargin, GridUnitType.Pixel);
+            AddColumn(1d, GridUnitType.Star);
+            AddColumn(HorizontalGapMargin, GridUnitType.Pixel);
+            AddColumn(0d, GridUnitType.Auto);
+        }
 
+        private void AddColumn(double value, GridUnitType gridUnitType)
+        {
             _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition
             {
-                Width = new GridLength(HorizontalGapMargin, GridUnitType.Pixel)
-            });
-
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition
-            {
-                Width = new GridLength(1d, GridUnitType.Star)
-            });
-
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition
-            {
-                Width = new GridLength(HorizontalGapMargin, GridUnitType.Pixel)
-            });
-
-            _layoutRoot.ColumnDefinitions.Add(new ColumnDefinition
-            {
-                Width = new GridLength(0d, GridUnitType.Auto)
+                Width = new GridLength(value, gridUnitType)
             });
         }
 
-        private void SetRowLayout(TrackData trackData, ref int rowIndex)
+        private void AddRow(double value, GridUnitType gridUnitType)
+        {
+            _layoutRoot.RowDefinitions.Add(new RowDefinition
+            {
+                Height = new GridLength(value, gridUnitType)
+            });
+        }
+
+        private void SetControlRowLayout(TrackData trackData, ref int rowIndex)
         {
             if (rowIndex != 0)
             {
-                _layoutRoot.RowDefinitions.Add(new RowDefinition
-                {
-                    Height = new GridLength(VerticalGapMargin, GridUnitType.Pixel)
-                });
-
+                AddRow(VerticalGapMargin, GridUnitType.Pixel);
                 rowIndex++;
             }
 
-            _layoutRoot.RowDefinitions.Add(new RowDefinition
-            {
-                Height = new GridLength(0d, GridUnitType.Auto)
-            });
+            AddRow(0d, GridUnitType.Auto);
 
             var numberEditor = _numberEditors[trackData];
             _layoutRoot.Children.Add(numberEditor);
-            Grid.SetColumn(numberEditor, 0);
+            Grid.SetColumn(numberEditor, NumberEditorColumnIndex);
             Grid.SetRow(numberEditor, rowIndex);
 
             var fieldSetEditor = _fieldSetEditors[trackData];
             _layoutRoot.Children.Add(fieldSetEditor);
-            Grid.SetColumn(fieldSetEditor, 2);
+            Grid.SetColumn(fieldSetEditor, FieldSetEditorColumnIndex);
             Grid.SetRow(fieldSetEditor, rowIndex);
 
             var lengthEditor = _lengthEditors[trackData];
             _layoutRoot.Children.Add(lengthEditor);
-            Grid.SetColumn(lengthEditor, 4);
+            Grid.SetColumn(lengthEditor, LengthEditorColumnIndex);
             Grid.SetRow(lengthEditor, rowIndex);
 
             rowIndex++;
@@ -301,18 +353,63 @@ namespace DMAM.Album.Editors
             {
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 VerticalAlignment = VerticalAlignment.Center,
-                Padding = LabelPadding,
+                Padding = SectionPadding,
                 FontSize = FontSize * LabelFontSizeFactor,
                 FontWeight = FontWeights.Bold,
+                Background = SectionBackground,
                 DataContext = trackData
             };
 
             numberEditor.SetBinding(TextBlock.TextProperty, new Binding
             {
-                Path = new PropertyPath("TrackNumber")
+                Path = new PropertyPath(TrackNumberPropertyName)
             });
 
             _numberEditors.Add(trackData, numberEditor);
+        }
+
+        private void LoadFieldSetEditor(TrackData trackData)
+        {
+            var fieldSetEditor = new FieldSetEditor
+            {
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Stretch,
+                VerticalGapMargin = FieldSetVerticalGapMargin,
+                Padding = SectionPadding,
+                Background = SectionBackground,
+                Foreground = Foreground,
+                NormalBackground = FieldNormalBackground,
+                ModifiedBackground = FieldModifiedBackground,
+                DataContext = trackData
+            };
+
+            fieldSetEditor.SetBinding(FieldSetEditor.FieldSetProperty, new Binding
+            {
+                Path = new PropertyPath(MetadataFieldsPropertyName)
+            });
+
+            _fieldSetEditors.Add(trackData, fieldSetEditor);
+        }
+
+        private void LoadLengthEditor(TrackData trackData)
+        {
+            var lengthEditor = new TextBlock
+            {
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Center,
+                Padding = SectionPadding,
+                FontSize = FontSize * LabelFontSizeFactor,
+                FontWeight = FontWeights.Bold,
+                Background = SectionBackground,
+                DataContext = trackData
+            };
+
+            lengthEditor.SetBinding(TextBlock.TextProperty, new Binding
+            {
+                Path = new PropertyPath(TrackLengthPropertyName)
+            });
+
+            _lengthEditors.Add(trackData, lengthEditor);
         }
 
         private void ReleaseNumberEditors()
@@ -325,24 +422,6 @@ namespace DMAM.Album.Editors
             _numberEditors.Clear();
         }
 
-        private void LoadFieldSetEditor(TrackData trackData)
-        {
-            var fieldSetEditor = new FieldSetEditor
-            {
-                HorizontalAlignment = HorizontalAlignment.Stretch,
-                VerticalAlignment = VerticalAlignment.Stretch,
-                VerticalGapMargin = 0d,
-                DataContext = trackData
-            };
-
-            fieldSetEditor.SetBinding(FieldSetEditor.FieldSetProperty, new Binding
-            {
-                Path = new PropertyPath("MetadataFields")
-            });
-
-            _fieldSetEditors.Add(trackData, fieldSetEditor);
-        }
-
         private void ReleaseFieldSetEditors()
         {
             foreach (var fieldSetEditor in _fieldSetEditors.Values)
@@ -351,26 +430,6 @@ namespace DMAM.Album.Editors
             }
 
             _fieldSetEditors.Clear();
-        }
-
-        private void LoadLengthEditor(TrackData trackData)
-        {
-            var lengthEditor = new TextBlock
-            {
-                HorizontalAlignment = HorizontalAlignment.Stretch,
-                VerticalAlignment = VerticalAlignment.Center,
-                Padding = LabelPadding,
-                FontSize = FontSize * LabelFontSizeFactor,
-                FontWeight = FontWeights.Bold,
-                DataContext = trackData
-            };
-
-            lengthEditor.SetBinding(TextBlock.TextProperty, new Binding
-            {
-                Path = new PropertyPath("TrackLength")
-            });
-
-            _lengthEditors.Add(trackData, lengthEditor);
         }
 
         private void ReleaseLengthEditors()

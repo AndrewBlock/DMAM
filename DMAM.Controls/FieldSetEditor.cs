@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 using DMAM.Core.DataModels;
 
@@ -15,6 +16,12 @@ namespace DMAM.Controls
 
         public static readonly DependencyProperty VerticalGapMarginProperty = DependencyProperty.Register("VerticalGapMargin",
             typeof(double), typeof(FieldSetEditor), new PropertyMetadata(2d, NotifyPropertyChanged));
+
+        public static readonly DependencyProperty NormalBackgroundProperty = DependencyProperty.Register("NormalBackground",
+            typeof(Brush), typeof(FieldSetEditor), new PropertyMetadata(new SolidColorBrush(Colors.Transparent), NotifyPropertyChanged));
+
+        public static readonly DependencyProperty ModifiedBackgroundProperty = DependencyProperty.Register("ModifiedBackground",
+            typeof(Brush), typeof(FieldSetEditor), new PropertyMetadata(new SolidColorBrush(Colors.LightYellow), NotifyPropertyChanged));
 
         private Dictionary<FieldValue, FieldValueEditor> _editorLookup =
             new Dictionary<FieldValue, FieldValueEditor>();
@@ -54,6 +61,30 @@ namespace DMAM.Controls
             }
         }
 
+        public Brush NormalBackground
+        {
+            get
+            {
+                return (Brush) GetValue(NormalBackgroundProperty);
+            }
+            set
+            {
+                SetValue(NormalBackgroundProperty, value);
+            }
+        }
+
+        public Brush ModifiedBackground
+        {
+            get
+            {
+                return (Brush) GetValue(ModifiedBackgroundProperty);
+            }
+            set
+            {
+                SetValue(ModifiedBackgroundProperty, value);
+            }
+        }
+
         private static void NotifyPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
         {
             var editor = (FieldSetEditor) dependencyObject;
@@ -62,7 +93,9 @@ namespace DMAM.Controls
 
         private void NotifyPropertyChanged(DependencyPropertyChangedEventArgs args)
         {
-            if (args.Property == FieldSetProperty)
+            if ((args.Property == FieldSetProperty)
+                || (args.Property == NormalBackgroundProperty)
+                || (args.Property == ModifiedBackgroundProperty))
             {
                 DetachFieldSet();
                 AttachFieldSet(FieldSet);
@@ -115,7 +148,10 @@ namespace DMAM.Controls
                 var fieldValueEditor = new FieldValueEditor
                 {
                     HorizontalAlignment = HorizontalAlignment.Stretch,
-                    VerticalAlignment = VerticalAlignment.Center
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Foreground = Foreground,
+                    NormalBackground = NormalBackground,
+                    ModifiedBackground = ModifiedBackground
                 };
 
                 fieldValueEditor.DataContext = fieldValue;

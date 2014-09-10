@@ -12,6 +12,12 @@ namespace DMAM.Controls
 {
     public partial class FieldValueEditor : IDisposable
     {
+        public static readonly DependencyProperty NormalBackgroundProperty = DependencyProperty.Register("NormalBackground",
+            typeof(Brush), typeof(FieldValueEditor), new PropertyMetadata(new SolidColorBrush(Colors.Transparent), NotifyPropertyChanged));
+
+        public static readonly DependencyProperty ModifiedBackgroundProperty = DependencyProperty.Register("ModifiedBackground",
+            typeof(Brush), typeof(FieldValueEditor), new PropertyMetadata(new SolidColorBrush(Colors.LightYellow), NotifyPropertyChanged));
+
         private const string ValuePropertyName = "Value";
         private const string IsReadOnlyPropertyName = "IsReadOnly";
         private const string IsModifiedPropertyName = "IsModified";
@@ -32,8 +38,6 @@ namespace DMAM.Controls
 
         private bool _mouseEntered;
         private bool _isModifiedHighlighted;
-        private static readonly Brush _normalBackgroundBrush = new SolidColorBrush(Colors.Transparent);
-        private static readonly Brush _modifiedBackgroundBrush = new SolidColorBrush(Colors.AliceBlue);
 
         private bool _valueUpdateInProgress;
 
@@ -61,6 +65,30 @@ namespace DMAM.Controls
             editText.TextChanged -= textBox_TextChanged;
         }
 
+        public Brush NormalBackground
+        {
+            get
+            {
+                return (Brush) GetValue(NormalBackgroundProperty);
+            }
+            set
+            {
+                SetValue(NormalBackgroundProperty, value);
+            }
+        }
+
+        public Brush ModifiedBackground
+        {
+            get
+            {
+                return (Brush) GetValue(ModifiedBackgroundProperty);
+            }
+            set
+            {
+                SetValue(ModifiedBackgroundProperty, value);
+            }
+        }
+
         protected override void OnMouseEnter(MouseEventArgs args)
         {
             base.OnMouseEnter(args);
@@ -77,6 +105,11 @@ namespace DMAM.Controls
 
         private void textBox_GotFocus(object sender, RoutedEventArgs args)
         {
+            if (Mouse.LeftButton == MouseButtonState.Released)
+            {
+                editText.SelectAll();
+            }
+
             UpdateActivationState();
             UpdateEmptyTextVisibility();
         }
@@ -85,7 +118,7 @@ namespace DMAM.Controls
         {
             UpdateActivationState();
             UpdateEmptyTextVisibility();
-            editText.SelectAll();
+            editText.Select(0, 0);
         }
 
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -125,6 +158,21 @@ namespace DMAM.Controls
                 UpdateIsReadOnly();
             }
             else if (args.PropertyName == IsModifiedPropertyName)
+            {
+                UpdateIsModified();
+            }
+        }
+
+        private static void NotifyPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
+        {
+            var editor = (FieldValueEditor) dependencyObject;
+            editor.NotifyPropertyChanged(args);
+        }
+
+        private void NotifyPropertyChanged(DependencyPropertyChangedEventArgs args)
+        {
+            if ((args.Property == NormalBackgroundProperty)
+                || (args.Property == ModifiedBackgroundProperty))
             {
                 UpdateIsModified();
             }
@@ -177,6 +225,10 @@ namespace DMAM.Controls
             UpdateIsModified();
             UpdateRevertCommand();
             UpdateRemoveCommand();
+
+            editText.Foreground = Foreground;
+            readonlyText.Foreground = Foreground;
+            emptyText.Foreground = Foreground;
         }
 
         private void UpdateTextOpacity()
@@ -228,7 +280,6 @@ namespace DMAM.Controls
             {
                 _valueUpdateInProgress = true;
                 editText.Text = _fieldValue.Value;
-                editText.SelectAll();
             }
             finally
             {
@@ -240,7 +291,11 @@ namespace DMAM.Controls
         {
             var value = (_fieldValue != null) ? _fieldValue.DisplayName : string.Empty;
             emptyText.Text = value;
-            ToolTipService.SetToolTip(this, value);
+            ToolTipService.SetToolTip(editText, new TextBlock
+            {
+                Padding = new Thickness(0d, 0d, 0d, 0d),
+                Text = value
+            });
         }
 
         private void UpdateIsReadOnly()
@@ -260,7 +315,7 @@ namespace DMAM.Controls
         private void UpdateIsModified()
         {
             _isModifiedHighlighted = (_fieldValue != null) ? _fieldValue.IsModified : false;
-            Background = _isModifiedHighlighted ? _modifiedBackgroundBrush : _normalBackgroundBrush;
+            Background = _isModifiedHighlighted ? ModifiedBackground : NormalBackground;
         }
 
         private void UpdateRevertCommand()
