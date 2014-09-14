@@ -39,6 +39,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schema\ForeignKeyFieldEntry.cs" />
+    <Compile Include="Schema\IntegerFieldEntry.cs" />
+    <Compile Include="Schema\InvalidSchemaFieldValueException.cs" />
+    <Compile Include="Schema\ITableSchema.cs" />
+    <Compile Include="Schema\ISchemaFieldEntry.cs" />
+    <Compile Include="Schema\ISchemaFieldValue.cs" />
+    <Compile Include="Schema\PrimaryKeyFieldEntry.cs" />
+    <Compile Include="Schema\TableSchemaBase.cs" />
+    <Compile Include="Schema\SchemaFieldEntry.cs" />
+    <Compile Include="Schema\SchemaFieldValue.cs" />
+    <Compile Include="Schema\TextFieldEntry.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DMAM.Core\DMAM.Core.csproj">

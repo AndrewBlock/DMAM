@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using DMAM.Core.Schema;
+using DMAM.Database.Schema;
 
 namespace DMAM.Album.Data.Schema
 {
-    public class AudioFileSchema : SchemaBase
+    public class AudioFileSchema : TableSchemaBase
     {
         public const string AudioFileId = "AudioFileId";
         public const string Filename = "Filename";
 
-        protected override string TableName
+        public override string TableName
         {
             get { return "AudioFiles"; }
         }

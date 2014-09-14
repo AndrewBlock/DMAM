@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using DMAM.Core.Schema;
+using DMAM.Database.Schema;
 
 namespace DMAM.Album.Data.Schema
 {
-    public class TrackCoverArtSchema : SchemaBase
+    public class TrackCoverArtSchema : TableSchemaBase
     {
         public const string CoverArtIndex = "CoverArtIndex";
 
-        protected override string TableName
+        public override string TableName
         {
             get { return "TrackCoverArt"; }
         }

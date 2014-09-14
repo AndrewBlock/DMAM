@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DMAM.Core.Schema
+namespace DMAM.Database.Schema
 {
-    public abstract class SchemaBase : ISchema
+    public abstract class TableSchemaBase : ITableSchema
     {
-        public SchemaBase()
+        public TableSchemaBase()
         {
             Schema = LoadSchema();
         }
 
+        public abstract string TableName { get; }
         public IEnumerable<ISchemaFieldEntry> Schema { get; private set; }
 
-        protected abstract string TableName { get; }
         protected abstract IEnumerable<ISchemaFieldEntry> LoadSchema();
     }
 }

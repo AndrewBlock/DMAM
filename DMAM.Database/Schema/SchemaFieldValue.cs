@@ -2,7 +2,7 @@
 
 using DMAM.Core.MVVM;
 
-namespace DMAM.Core.Schema
+namespace DMAM.Database.Schema
 {
     public class SchemaFieldValue<T> : ViewModelBase, ISchemaFieldValue
     {

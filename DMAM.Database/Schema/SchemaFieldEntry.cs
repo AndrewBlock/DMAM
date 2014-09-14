@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DMAM.Core.Schema
+namespace DMAM.Database.Schema
 {
     public abstract class SchemaFieldEntry<T> : ISchemaFieldEntry
     {

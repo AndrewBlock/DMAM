@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using DMAM.Core.Schema;
+using DMAM.Database.Schema;
 
 namespace DMAM.Album.Data.Schema
 {
-    public class CoverArtFileSchema : SchemaBase
+    public class CoverArtFileSchema : TableSchemaBase
     {
         public const string CoverArtId = "CoverArtId";
         public const string Filename = "Filename";
         public const string Width = "Width";
         public const string Height = "Height";
 
-        protected override string TableName
+        public override string TableName
         {
             get { return "CoverArtFiles"; }
         }

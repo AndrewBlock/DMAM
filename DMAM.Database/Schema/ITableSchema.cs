@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace DMAM.Core.Schema
+namespace DMAM.Database.Schema
 {
-    public interface ISchema
+    public interface ITableSchema
     {
+        string TableName { get; }
         IEnumerable<ISchemaFieldEntry> Schema { get; }
     }
 }

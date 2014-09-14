@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using DMAM.Core.Schema;
+using DMAM.Database.Schema;
 
 namespace DMAM.Album.Data.Schema
 {
-    public class TrackSchema : SchemaBase
+    public class TrackSchema : TableSchemaBase
     {
         public const string TrackId = "TrackId";
         public const string Title = "Title";
@@ -21,7 +21,7 @@ namespace DMAM.Album.Data.Schema
         public const string Composer = "Composer";
         public const string Comments = "Comments";
 
-        protected override string TableName
+        public override string TableName
         {
             get { return "Tracks"; }
         }
