@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace DMAM.Database.Schema
+namespace DMAM.Core.Schema
 {
     public class TextFieldValue : SchemaFieldValue
     {
         private string _value = string.Empty;
-        
+
         public TextFieldValue(TextFieldEntry fieldEntry)
             : base(fieldEntry)
         {

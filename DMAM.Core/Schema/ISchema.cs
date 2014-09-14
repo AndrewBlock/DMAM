@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DMAM.Database.Schema
+namespace DMAM.Core.Schema
 {
     public interface ISchema
     {

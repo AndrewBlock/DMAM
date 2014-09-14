@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DMAM.Database.Schema
+using DMAM.Core.Schema;
+
+namespace DMAM.Album.Data.Schema
 {
     public class TrackSchema : SchemaBase
     {
@@ -9,8 +11,6 @@ namespace DMAM.Database.Schema
         {
             return new List<SchemaFieldEntry>()
             {
-                new ImageFieldEntry(Resources.Audio, "Audio", null, "Audio", ".wav"),
-                new ImageFieldEntry(Resources.Artwork, "Artwork", null, "Artwork", ".png"),
                 new TextFieldEntry(Resources.Title, "Title", "TITLE", 512),
                 new TextFieldEntry(Resources.Artist, "Artist", "ARTIST", 512),
                 new TextFieldEntry(Resources.AlbumArtist, "AlbumArtist", null, 512),

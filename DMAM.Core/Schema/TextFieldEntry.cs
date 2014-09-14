@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DMAM.Database.Schema
+namespace DMAM.Core.Schema
 {
     public class TextFieldEntry : SchemaFieldEntry
     {
