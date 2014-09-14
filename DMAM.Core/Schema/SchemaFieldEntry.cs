@@ -2,19 +2,27 @@
 
 namespace DMAM.Core.Schema
 {
-    public abstract class SchemaFieldEntry
+    public abstract class SchemaFieldEntry<T> : ISchemaFieldEntry
     {
-        protected SchemaFieldEntry(string displayName, string dbColumnName, string metadataName)
+        protected SchemaFieldEntry(string columnName, string displayName, string metadataName)
         {
+            ColumnName = columnName;
             DisplayName = displayName;
-            DbColumnName = dbColumnName;
             MetadataName = metadataName;
         }
 
+        public string ColumnName { get; private set; }
         public string DisplayName { get; private set; }
-        public string DbColumnName { get; private set; }
         public string MetadataName { get; private set; }
 
-        public abstract SchemaFieldValue CreateValue();
+        public Type ValueType
+        {
+            get { return typeof(T); }
+        }
+
+        public ISchemaFieldValue CreateValue()
+        {
+            return new SchemaFieldValue<T>(this);
+        }
     }
 }

@@ -138,11 +138,20 @@
   <data name="Composer" xml:space="preserve">
     <value>Composer</value>
   </data>
+  <data name="CoverArtIndex" xml:space="preserve">
+    <value>Cover Art Index</value>
+  </data>
   <data name="DiscNumber" xml:space="preserve">
     <value>Disc</value>
   </data>
   <data name="Genre" xml:space="preserve">
     <value>Genre</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Path</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Title</value>
@@ -155,6 +164,9 @@
   </data>
   <data name="TrackNumber" xml:space="preserve">
     <value>Track</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Width</value>
   </data>
   <data name="Year" xml:space="preserve">
     <value>Year</value>

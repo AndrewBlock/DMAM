@@ -10,8 +10,9 @@ namespace DMAM.Core.Schema
             Schema = LoadSchema();
         }
 
-        public IEnumerable<SchemaFieldEntry> Schema { get; private set; }
+        public IEnumerable<ISchemaFieldEntry> Schema { get; private set; }
 
-        protected abstract IEnumerable<SchemaFieldEntry> LoadSchema();
+        protected abstract string TableName { get; }
+        protected abstract IEnumerable<ISchemaFieldEntry> LoadSchema();
     }
 }

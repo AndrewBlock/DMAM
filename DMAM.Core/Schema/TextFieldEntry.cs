@@ -2,19 +2,14 @@
 
 namespace DMAM.Core.Schema
 {
-    public class TextFieldEntry : SchemaFieldEntry
+    public class TextFieldEntry : SchemaFieldEntry<string>
     {
-        public TextFieldEntry(string displayName, string dbColumnName, string metadataName, int maximumLength)
-            : base(displayName, dbColumnName, metadataName)
+        public TextFieldEntry(string columnName, string displayName, string metadataName, int maximumLength)
+            : base(columnName, displayName, metadataName)
         {
             MaximumLength = maximumLength;
         }
 
         public int MaximumLength { get; private set; }
-
-        public override SchemaFieldValue CreateValue()
-        {
-            return new TextFieldValue(this);
-        }
     }
 }

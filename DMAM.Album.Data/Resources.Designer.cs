@@ -124,6 +124,15 @@ namespace DMAM.Album.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cover Art Index.
+        /// </summary>
+        internal static string CoverArtIndex {
+            get {
+                return ResourceManager.GetString("CoverArtIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disc.
         /// </summary>
         internal static string DiscNumber {
@@ -138,6 +147,24 @@ namespace DMAM.Album.Data {
         internal static string Genre {
             get {
                 return ResourceManager.GetString("Genre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Height.
+        /// </summary>
+        internal static string Height {
+            get {
+                return ResourceManager.GetString("Height", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path.
+        /// </summary>
+        internal static string Path {
+            get {
+                return ResourceManager.GetString("Path", resourceCulture);
             }
         }
         
@@ -174,6 +201,15 @@ namespace DMAM.Album.Data {
         internal static string TrackNumber {
             get {
                 return ResourceManager.GetString("TrackNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width.
+        /// </summary>
+        internal static string Width {
+            get {
+                return ResourceManager.GetString("Width", resourceCulture);
             }
         }
         

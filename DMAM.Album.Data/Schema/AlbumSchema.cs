@@ -5,15 +5,13 @@ using DMAM.Core.Schema;
 
 namespace DMAM.Album.Data.Schema
 {
-    public class TrackSchema : SchemaBase
+    public class AlbumSchema : SchemaBase
     {
-        public const string TrackId = "TrackId";
+        public const string AlbumId = "AlbumId";
         public const string Title = "Title";
         public const string Artist = "Artist";
-        public const string AlbumArtist = "AlbumArtist";
         public const string Album = "Album";
         public const string Year = "Year";
-        public const string TrackNumber = "TrackNumber";
         public const string TotalTracks = "TotalTracks";
         public const string DiscNumber = "DiscNumber";
         public const string TotalDiscs = "TotalDiscs";
@@ -23,22 +21,18 @@ namespace DMAM.Album.Data.Schema
 
         protected override string TableName
         {
-            get { return "Tracks"; }
+            get { return "Albums"; }
         }
 
         protected override IEnumerable<ISchemaFieldEntry> LoadSchema()
         {
             return new List<ISchemaFieldEntry>()
             {
-                new PrimaryKeyFieldEntry(TrackId),
-                new ForeignKeyFieldEntry(AlbumSchema.AlbumId, typeof(AlbumSchema)),
-                new ForeignKeyFieldEntry(AudioFileSchema.AudioFileId, typeof(AudioFileSchema)),
+                new PrimaryKeyFieldEntry(AlbumId),
                 new TextFieldEntry(Title, Resources.Title, GracenoteFields.TITLE, 512),
                 new TextFieldEntry(Artist, Resources.Artist, GracenoteFields.ARTIST, 512),
-                new TextFieldEntry(AlbumArtist, Resources.AlbumArtist, null, 512),
                 new TextFieldEntry(Album, Resources.Album, null, 512),
                 new TextFieldEntry(Year, Resources.Year, GracenoteFields.DATE, 4),
-                new TextFieldEntry(TrackNumber, Resources.TrackNumber, GracenoteFields.TRACK_NUM, 4),
                 new TextFieldEntry(TotalTracks, Resources.TotalTracks, GracenoteFields.TRACK_COUNT, 4),
                 new TextFieldEntry(DiscNumber, Resources.DiscNumber, null, 4),
                 new TextFieldEntry(TotalDiscs, Resources.TotalDiscs, null, 4),
