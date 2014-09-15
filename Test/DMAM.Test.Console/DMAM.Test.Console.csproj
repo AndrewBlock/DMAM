@@ -54,13 +54,29 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DMAM.Album.Data\DMAM.Album.Data.csproj">
+      <Project>{5d86fd8e-afdd-476b-923a-8cc039eb9fcc}</Project>
+      <Name>DMAM.Album.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DMAM.Core\DMAM.Core.csproj">
       <Project>{49fb4c8c-3f2d-4c45-ab63-7d995fa92314}</Project>
       <Name>DMAM.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\DMAM.Database\DMAM.Database.csproj">
+      <Project>{039df91a-2a20-4048-85c6-3e45cbf7001e}</Project>
+      <Name>DMAM.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DMAM.Device\DMAM.Device.csproj">
+      <Project>{5c55819f-8853-459f-b5a1-9bd6fa1047a0}</Project>
+      <Name>DMAM.Device</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DMAM.Gracenote\DMAM.Gracenote.csproj">
       <Project>{eae70679-3275-4d3d-b77b-2ff87fd221f5}</Project>
       <Name>DMAM.Gracenote</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DMAM.Interop\DMAM.Interop.csproj">
+      <Project>{4fc3ac99-0dc8-4d41-92c9-97825092e746}</Project>
+      <Name>DMAM.Interop</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
