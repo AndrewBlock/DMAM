@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using DMAM.Database.Schema.Internal;
+
 namespace DMAM.Database.Schema
 {
     public class DbSchemaValidator
     {
-        private Dictionary<Type, ITableSchema> _tablesByType = new Dictionary<Type, ITableSchema>();
+        private Dictionary<Type, TableRecord> _tables = new Dictionary<Type, TableRecord>();
 
         public void Validate(IEnumerable<ITableSchema> tables)
         {
-            ProcessTables(tables);
+            ValidateTables(tables);
+            ValidateForeignKeyDependencies();
         }
 
-        private void ProcessTables(IEnumerable<ITableSchema> tables)
+        private void ValidateTables(IEnumerable<ITableSchema> tables)
         {
-            _tablesByType.Clear();
+            _tables.Clear();
 
             var tableNames = new List<string>();
             foreach (var table in tables)
@@ -25,52 +28,91 @@ namespace DMAM.Database.Schema
                 }
 
                 var type = table.GetType();
-                if (_tablesByType.ContainsKey(type))
+                if (_tables.ContainsKey(type))
                 {
                     throw new InvalidTableSchemaException(string.Format(
                         "ITableSchema type '{0}' cannot be used more than once.",
-                        type.FullName));
+                        SchemaUtils.GetDisplayName(type)));
                 }
 
-                if (!IsValidDbLabel(table.TableName))
+                if (string.IsNullOrWhiteSpace(table.TableName))
+                {
+                    throw new InvalidTableSchemaException(string.Format(
+                        "ITableSchema name used by type '{0}' is empty.",
+                        SchemaUtils.GetDisplayName(type)));
+                }
+
+                if (!SchemaUtils.IsValidDbLabel(table.TableName))
                 {
                     throw new InvalidTableSchemaException(string.Format(
                         "ITableSchema name '{0}' used by type '{1}' contains invalid characters.",
-                        table.TableName, type.FullName));
+                        table.TableName, SchemaUtils.GetDisplayName(type)));
                 }
 
                 var name = table.TableName.ToUpper();
-                if (tableNames.Contains(table.TableName))
+                if (tableNames.Contains(name))
                 {
                     throw new InvalidTableSchemaException(string.Format(
                         "ITableSchema name '{0}' used by type '{1}' cannot be used more than once.",
-                        table.TableName, type.FullName));
+                        table.TableName, SchemaUtils.GetDisplayName(type)));
                 }
 
-                _tablesByType.Add(type, table);
+                _tables.Add(type, new TableRecord(type, table));
                 tableNames.Add(name);
             }
         }
 
-        private static bool IsValidDbLabel(string tableName)
+        private void ValidateForeignKeyDependencies()
         {
-            foreach (var character in tableName)
+            foreach (var tableRecord in _tables.Values)
             {
-                if (!IsValidDbLabelCharacter(character))
-                {
-                    return false;
-                }
+                ValidateTableForeignKeyDependencies(tableRecord);
             }
-
-            return true;
         }
 
-        private static bool IsValidDbLabelCharacter(char character)
+        private void ValidateTableForeignKeyDependencies(TableRecord tableRecord)
         {
-            return (((character >= '0') && (character <= '9'))
-                || ((character >= '0') && (character <= '9'))
-                || ((character >= 'a') && (character <= 'z'))
-                || (character == '_'));
+            foreach (var columnName in tableRecord.Columns.Keys)
+            {
+                ValidateForeignKeyDependency(tableRecord.Columns[columnName],
+                    columnName, tableRecord.Type);
+            }
+        }
+
+        private void ValidateForeignKeyDependency(ISchemaFieldEntry column, string columnName, Type ownerType)
+        {
+            var foreignKeyColumn = column as ForeignKeyFieldEntry;
+            if (foreignKeyColumn == null)
+            {
+                return;
+            }
+
+            var foreignTableType = foreignKeyColumn.ForeignSchemaType;
+            if (!_tables.ContainsKey(foreignTableType))
+            {
+                throw new InvalidTableSchemaException(string.Format(
+                    "ITableSchema '{0}' referred to by ITableSchema '{1}', column '{2}' does not exist.",
+                    SchemaUtils.GetDisplayName(foreignTableType), SchemaUtils.GetDisplayName(ownerType),
+                    foreignKeyColumn.ColumnName));
+            }
+
+            var foreignTable = _tables[foreignTableType];
+            if (!foreignTable.Columns.ContainsKey(columnName))
+            {
+                throw new InvalidTableSchemaException(string.Format(
+                    "Column '{0}' in ITableSchema '{1}' referred to by ITableSchema '{2}' does not exist.",
+                    foreignKeyColumn.ColumnName, SchemaUtils.GetDisplayName(foreignTableType),
+                    SchemaUtils.GetDisplayName(ownerType)));
+            }
+
+            var primaryColumn = foreignTable.Columns[columnName] as PrimaryKeyFieldEntry;
+            if (primaryColumn == null)
+            {
+                throw new InvalidTableSchemaException(string.Format(
+                    "Column '{0}' in ITableSchema '{1}' referred to by ITableSchema '{2}' is not a PrimaryKeyField.",
+                    foreignKeyColumn.ColumnName, SchemaUtils.GetDisplayName(foreignTableType),
+                    SchemaUtils.GetDisplayName(ownerType)));
+            }
         }
     }
 }
