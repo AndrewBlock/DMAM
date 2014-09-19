@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 
 using DMAM.Database.Schema;
+using DMAM.Gracenote;
 
 namespace DMAM.Album.Data.Schema
 {
     public class TrackCoverArtSchema : TableSchemaBase
     {
         public const string CoverArtIndex = "CoverArtIndex";
+
+        public static readonly ISchemaFieldEntry TrackIdField = new ForeignKeyFieldEntry(TrackSchema.TrackId, typeof(TrackSchema));
+        public static readonly ISchemaFieldEntry CoverArtIdField = new ForeignKeyFieldEntry(CoverArtFileSchema.CoverArtId, typeof(CoverArtFileSchema));
+        public static readonly ISchemaFieldEntry CoverArtIndexField = new IntegerFieldEntry(CoverArtIndex, Resources.CoverArtIndex, null, 0, int.MaxValue);
 
         public override string TableName
         {
@@ -18,9 +23,9 @@ namespace DMAM.Album.Data.Schema
         {
             return new List<ISchemaFieldEntry>()
             {
-                new ForeignKeyFieldEntry(TrackSchema.TrackId, typeof(TrackSchema)),
-                new ForeignKeyFieldEntry(CoverArtFileSchema.CoverArtId, typeof(CoverArtFileSchema)),
-                new IntegerFieldEntry(CoverArtIndex, Resources.CoverArtIndex, null, 0, int.MaxValue)
+                TrackIdField,
+                CoverArtIdField,
+                CoverArtIndexField
             };
         }
     }

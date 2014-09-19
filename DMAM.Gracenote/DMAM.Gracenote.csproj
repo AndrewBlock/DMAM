@@ -42,6 +42,7 @@
     <Compile Include="CDDBService.cs" />
     <Compile Include="AlbumLookupInfo.cs" />
     <Compile Include="CoverArtInfo.cs" />
+    <Compile Include="GracenoteFields.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\Authentication.cs" />
     <Compile Include="Queries\Country.cs" />

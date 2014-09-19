@@ -48,7 +48,6 @@
     <Compile Include="Schema\AudioFileSchema.cs" />
     <Compile Include="Schema\TrackCoverArtSchema.cs" />
     <Compile Include="Schema\CoverArtFileSchema.cs" />
-    <Compile Include="Schema\GracenoteFields.cs" />
     <Compile Include="Schema\TrackSchema.cs" />
   </ItemGroup>
   <ItemGroup>

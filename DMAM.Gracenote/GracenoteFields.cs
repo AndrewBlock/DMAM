@@ -1,4 +1,4 @@
-﻿namespace DMAM.Album.Data.Schema
+﻿namespace DMAM.Gracenote
 {
     public static class GracenoteFields
     {

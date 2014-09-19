@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using DMAM.Database.Schema;
+using DMAM.Gracenote;
 
 namespace DMAM.Album.Data.Schema
 {
@@ -12,6 +13,11 @@ namespace DMAM.Album.Data.Schema
         public const string Width = "Width";
         public const string Height = "Height";
 
+        public static readonly ISchemaFieldEntry CoverArtIdField = new PrimaryKeyFieldEntry(CoverArtId);
+        public static readonly ISchemaFieldEntry FilenameField = new TextFieldEntry(Filename, Resources.Path, null, 512);
+        public static readonly ISchemaFieldEntry WidthField = new IntegerFieldEntry(Width, Resources.Width, null, 0, int.MaxValue);
+        public static readonly ISchemaFieldEntry HeightField = new IntegerFieldEntry(Height, Resources.Height, null, 0, int.MaxValue);
+
         public override string TableName
         {
             get { return "CoverArtFiles"; }
@@ -21,10 +27,10 @@ namespace DMAM.Album.Data.Schema
         {
             return new List<ISchemaFieldEntry>()
             {
-                new PrimaryKeyFieldEntry(CoverArtId),
-                new TextFieldEntry(Filename, Resources.Path, null, 512),
-                new IntegerFieldEntry(Width, Resources.Width, null, 0, int.MaxValue),
-                new IntegerFieldEntry(Height, Resources.Height, null, 0, int.MaxValue)
+                CoverArtIdField,
+                FilenameField,
+                WidthField,
+                HeightField
             };
         }
     }
