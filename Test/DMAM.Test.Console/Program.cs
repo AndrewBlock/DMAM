@@ -1,6 +1,7 @@
 ﻿using System;
 
 using DMAM.Album.Data.Schema;
+using DMAM.Core.Metadata;
 using DMAM.Database.Schema;
 
 namespace DMAM.Test.Console
@@ -18,6 +19,9 @@ namespace DMAM.Test.Console
                 new CoverArtFileSchema(),
                 new TrackCoverArtSchema()
             });
+
+            var metadataService = new MetadataService();
+            metadataService.RegisterMetadataType(typeof(DMAM.Album.Data.Schema.Album));
 
             return 0;
         }
