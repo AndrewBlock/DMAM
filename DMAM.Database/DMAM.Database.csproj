@@ -38,6 +38,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\ForeignKeyAttribute.cs" />
+    <Compile Include="Attributes\PrimaryKeyAttribute.cs" />
+    <Compile Include="Attributes\TableAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema\Internal\SchemaUtils.cs" />
     <Compile Include="Schema\Internal\TableRecord.cs" />
