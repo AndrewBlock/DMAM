@@ -44,10 +44,15 @@
     <Compile Include="DataModels\FieldValue.cs" />
     <Compile Include="DataModels\FieldValueHandler.cs" />
     <Compile Include="DataModels\IFieldValueCompare.cs" />
+    <Compile Include="Metadata\Internal\FieldRecord.cs" />
+    <Compile Include="Metadata\MetadataMapAttribute.cs" />
+    <Compile Include="Metadata\ExternalFieldAttribute.cs" />
+    <Compile Include="Metadata\MetadataFieldAttribute.cs" />
     <Compile Include="Metadata\ItemMetadata.cs" />
     <Compile Include="Events\EventData.cs" />
     <Compile Include="Events\EventHandler.cs" />
     <Compile Include="Events\Event.cs" />
+    <Compile Include="Metadata\MetadataService.cs" />
     <Compile Include="MVVM\Command.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BasicTask.cs" />
